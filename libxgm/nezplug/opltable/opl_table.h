@@ -7,6 +7,7 @@
 #define ARTBL_BITS 7
 #define ARTBL_SHIFT 20
 #define TLLTBL_BITS 8
+
 typedef struct opl_table_s {
   uint32_t sin_table[4][1024];
   uint32_t tll2log_table[256];
@@ -18,6 +19,6 @@ typedef struct opl_table_s {
   uint32_t pm_table2[256];
 } opl_table_t;
 
-PROTECTED_VAR const opl_table_t opl_table_i;
+PROTECTED const opl_table_t opl_table_i;
 
 #endif

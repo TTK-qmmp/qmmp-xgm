@@ -14,7 +14,11 @@ SettingsDialog::SettingsDialog(QWidget *parent)
         button->setFocusPolicy(Qt::NoFocus);
     }
 #endif
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+    QSettings settings;
+#else
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+#endif
     settings.beginGroup("XGM");
     m_ui.kssMasterVolume->setValue(settings.value("kss_master_volume", 32).toInt());
     m_ui.kssDevicePan->setValue(settings.value("kss_device_pan", 32).toInt());
@@ -26,7 +30,11 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 
 void SettingsDialog::accept()
 {
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+    QSettings settings;
+#else
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+#endif
     settings.beginGroup("XGM");
     settings.setValue("kss_master_volume", m_ui.kssMasterVolume->value());
     settings.setValue("kss_device_pan", m_ui.kssDevicePan->value());

@@ -124,7 +124,11 @@ bool KssReader::load()
     KSSPLAY_set_device_quality(m_input, KSS_DEVICE_OPL, quality);
     KSSPLAY_set_device_quality(m_input, KSS_DEVICE_OPLL, quality);
 
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+    QSettings settings;
+#else
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+#endif
     settings.beginGroup("XGM");
     const int master = settings.value("kss_master_volume", 32).toInt();
     const int pan = settings.value("kss_device_pan", 32).toInt();
@@ -292,7 +296,11 @@ bool NEZplugReader::load()
     NEZSetSongNo(m_input, track < 1 ? 1 : track);
     NEZReset(m_input);
 
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
+    QSettings settings;
+#else
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+#endif
     settings.beginGroup("XGM");
     const int filter = settings.value("nez_filter", 0).toInt();
     const int gain = settings.value("nez_gain", 3).toInt();
