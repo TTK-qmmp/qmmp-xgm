@@ -1,5 +1,9 @@
 This is a plugin for Qmmp (1.6.0 or greater) which supports MSX related file.
-(libkss and nezplug++ and jaytrax and SBStudio PAC Audio File)
+
+Based on [libkss](https://github.com/digital-sound-antiques/libkss) (A player library for MSX music formats),
+[nezplug++](https://github.com/jprjr/libnezplug) (HES/KSS/NSF/GBR/GBS/AY player library),
+[jaytrax](https://github.com/pachuco/jaytrax) (Jaytrax replayer audio module),
+[SBStudio PAC](https://sourceforge.net/projects/libpac) (A library to decode SBStudio PAC music modules).
 
 The following packages are required, including development headers,
 which some vendors split into separate packages:

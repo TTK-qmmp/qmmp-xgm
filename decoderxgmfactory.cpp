@@ -97,7 +97,11 @@ void DecoderXGMFactory::showAbout(QWidget *parent)
 {
     QMessageBox::about(parent, tr("About XGM Reader Plugin"),
                        tr("Qmmp XGM Reader Plugin") + "\n" +
-                       tr("Written by: Greedysky <greedysky@163.com>"));
+                       tr("Written by: Greedysky <greedysky@163.com>") + "\n" +
+                       tr("Based on the source code from the libkss") + "\n" +
+                       tr("Based on the source code from the Nezplug++") + "\n" +
+                       tr("Based on the source code from the Jaytrax") + "\n" +
+                       tr("Based on the source code from the SBStudio PAC"));
 }
 
 QString DecoderXGMFactory::translation() const
