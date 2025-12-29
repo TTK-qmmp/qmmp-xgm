@@ -1,14 +1,7 @@
 #ifndef _KSSPLAY_H_
 #define _KSSPLAY_H_
 
-#include <stdint.h>
-
-#include "filters/dc_filter.h"
-#include "filters/filter.h"
-#include "filters/rc_filter.h"
 #include "kss/kss.h"
-#include "rconv/psg_rconv.h"
-#include "vm/vm.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -22,7 +15,18 @@ extern "C" {
 #define KSSPLAY_MUTE (1 << KSSPLAY_VOL_BITS)
 #define KSSPLAY_VOL_MASK ((1 << KSSPLAY_VOL_BITS) - 1)
 
+struct tagDCF;
+typedef struct tagDCF DCF;
+struct tagFIR;
+typedef struct tagFIR FIR;
+struct tagRCF;
+typedef struct tagRCF RCF;
+struct tagVM;
+typedef struct tagVM VM;
+struct PSGRateConv;
+typedef struct PSGRateConv PSG_RateConv;
 typedef struct tagKSSPLAY KSSPLAY;
+
 struct tagKSSPLAY {
   KSS *kss;
 

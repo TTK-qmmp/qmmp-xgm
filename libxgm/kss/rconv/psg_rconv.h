@@ -8,7 +8,7 @@ extern "C"
 {
 #endif
 
-  typedef struct __PSG_RateConv {
+  typedef struct PSGRateConv {
     double timer;
     double f_ratio;
     int16_t *sinc_table;

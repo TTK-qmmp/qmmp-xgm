@@ -32,23 +32,23 @@ SOURCES += decoderxgmfactory.cpp \
            libxgm/kss/modules/kmz80/kmz80c.c \
            libxgm/kss/modules/kmz80/kmz80t.c \
            libxgm/kss/modules/kmz80/kmz80u.c \
-           libxgm/kss/src/filters/dc_filter.c \
-           libxgm/kss/src/filters/filter.c \
-           libxgm/kss/src/filters/rc_filter.c \
-           libxgm/kss/src/kss/bgm2kss.c \
-           libxgm/kss/src/kss/kss.c \
-           libxgm/kss/src/kss/kss2kss.c \
-           libxgm/kss/src/kss/kssload.c \
-           libxgm/kss/src/kss/mbm2kss.c \
-           libxgm/kss/src/kss/mgs2kss.c \
-           libxgm/kss/src/kss/mpk2kss.c \
-           libxgm/kss/src/kss/opx2kss.c \
-           libxgm/kss/src/kss2vgm.c \
-           libxgm/kss/src/kssplay.c \
-           libxgm/kss/src/rconv/psg_rconv.c \
-           libxgm/kss/src/vm/detect.c \
-           libxgm/kss/src/vm/mmap.c \
-           libxgm/kss/src/vm/vm.c \
+           libxgm/kss/filters/dc_filter.c \
+           libxgm/kss/filters/filter.c \
+           libxgm/kss/filters/rc_filter.c \
+           libxgm/kss/kss/bgm2kss.c \
+           libxgm/kss/kss/kss.c \
+           libxgm/kss/kss/kss2kss.c \
+           libxgm/kss/kss/kssload.c \
+           libxgm/kss/kss/mbm2kss.c \
+           libxgm/kss/kss/mgs2kss.c \
+           libxgm/kss/kss/mpk2kss.c \
+           libxgm/kss/kss/opx2kss.c \
+           libxgm/kss/kss2vgm.c \
+           libxgm/kss/kssplay.c \
+           libxgm/kss/rconv/psg_rconv.c \
+           libxgm/kss/vm/detect.c \
+           libxgm/kss/vm/mmap.c \
+           libxgm/kss/vm/vm.c \
            libxgm/nezplug/device/logtable.c \
            libxgm/nezplug/device/nes/s_apu.c \
            libxgm/nezplug/device/nes/s_fds.c \
@@ -96,7 +96,6 @@ SOURCES += decoderxgmfactory.cpp \
 FORMS += settingsdialog.ui
 
 INCLUDEPATH += $$PWD/libxgm \
-               $$PWD/libxgm/kss/src \
                $$PWD/libxgm/kss/modules
 
 #CONFIG += BUILD_PLUGIN_INSIDE

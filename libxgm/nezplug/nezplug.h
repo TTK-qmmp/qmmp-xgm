@@ -1,7 +1,7 @@
 #ifndef NEZPLUG_H__
 #define NEZPLUG_H__
 
-#include "nezint.h"
+#include "../nezint.h"
 
 #ifdef __cplusplus
 extern "C" {

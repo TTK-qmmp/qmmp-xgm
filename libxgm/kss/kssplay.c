@@ -2,6 +2,11 @@
  * 2004-05-23 : Patched for GG Stereo by RuRuRu
  */
 #include "kssplay.h"
+#include "filters/dc_filter.h"
+#include "filters/filter.h"
+#include "filters/rc_filter.h"
+#include "rconv/psg_rconv.h"
+#include "vm/vm.h"
 #include <assert.h>
 #include <math.h>
 #include <stdio.h>
