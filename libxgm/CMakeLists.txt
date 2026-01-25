@@ -50,8 +50,8 @@ install(TARGETS ${PROJECT_NAME}
 )
 
 install(FILES nezint.h normalize.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/lib${PROJECT_NAME})
-install(FILES kss/src/kssplay.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/lib${PROJECT_NAME}/kss)
-install(FILES kss/src/kss/kss.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/lib${PROJECT_NAME}/kss/kss)
+install(FILES kss/kssplay.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/lib${PROJECT_NAME}/kss)
+install(FILES kss/kss/kss.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/lib${PROJECT_NAME}/kss/kss)
 install(FILES nezplug/nezplug.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/lib${PROJECT_NAME}/nezplug)
 install(FILES jaytrax/jxs.h jaytrax/jaytrax.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/lib${PROJECT_NAME}/jaytrax)
 install(FILES pac/pac.h pac/pacP.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/lib${PROJECT_NAME}/pac)
