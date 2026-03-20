@@ -55,7 +55,7 @@ public:
     virtual bool load() override final;
     virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
     virtual void seek(qint64 time) override final;
-    virtual QList<TrackInfo*> createPlayList(TrackInfo::Parts parts) override final;
+    virtual TrackInfoList createPlayList(TrackInfo::Parts parts) override final;
 
 private:
     int m_loop = 0;
@@ -195,9 +195,9 @@ qint64 KssReader::read(unsigned char *data, qint64 maxSize)
     return maxSize;
 }
 
-QList<TrackInfo*> KssReader::createPlayList(TrackInfo::Parts parts)
+TrackInfoList KssReader::createPlayList(TrackInfo::Parts parts)
 {
-    QList<TrackInfo*> playlist;
+    TrackInfoList playlist;
     if(!m_input)
     {
         return playlist;
@@ -213,7 +213,11 @@ QList<TrackInfo*> KssReader::createPlayList(TrackInfo::Parts parts)
     {
         KSSPLAY_reset(m_input, i - 1, 0);
 
-        TrackInfo *info = new TrackInfo();
+#if QMMP_VERSION_INT < 0x20400
+        TrackInfo *raw(new TrackInfo), *info = raw;
+#else
+        TrackInfo raw, *info = &raw;
+#endif
         if(parts & TrackInfo::MetaData)
         {
             info->setValue(Qmmp::TITLE, KSS_get_title(m_kss));
@@ -232,8 +236,9 @@ QList<TrackInfo*> KssReader::createPlayList(TrackInfo::Parts parts)
 
         info->setPath("xgm://" + cleanPath() + QString("#%1").arg(i));
         info->setDuration(totalTime());
-        playlist << info;
+        playlist << raw;
     }
+
     return playlist;
 }
 
@@ -247,7 +252,7 @@ public:
     virtual bool load() override final;
     virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
     virtual void seek(qint64 time) override final;
-    virtual QList<TrackInfo*> createPlayList(TrackInfo::Parts parts) override final;
+    virtual TrackInfoList createPlayList(TrackInfo::Parts parts) override final;
 
 private:
     NEZ_PLAY *m_input = nullptr;
@@ -347,9 +352,9 @@ qint64 NEZplugReader::read(unsigned char *data, qint64 maxSize)
     return maxSize;
 }
 
-QList<TrackInfo*> NEZplugReader::createPlayList(TrackInfo::Parts parts)
+TrackInfoList NEZplugReader::createPlayList(TrackInfo::Parts parts)
 {
-    QList<TrackInfo*> playlist;
+    TrackInfoList playlist;
     if(!m_input)
     {
         return playlist;
@@ -361,7 +366,11 @@ QList<TrackInfo*> NEZplugReader::createPlayList(TrackInfo::Parts parts)
         NEZSetSongNo(m_input, i);
         NEZReset(m_input);
 
-        TrackInfo *info = new TrackInfo();
+#if QMMP_VERSION_INT < 0x20400
+        TrackInfo *raw(new TrackInfo), *info = raw;
+#else
+        TrackInfo raw, *info = &raw;
+#endif
         if(parts & TrackInfo::MetaData)
         {
             info->setValue(Qmmp::TITLE, NEZGetTrackTitle(m_input, i));
@@ -381,8 +390,9 @@ QList<TrackInfo*> NEZplugReader::createPlayList(TrackInfo::Parts parts)
 
         info->setPath("xgm://" + cleanPath() + QString("#%1").arg(i));
         info->setDuration(NEZGetTrackLength(m_input, i));
-        playlist << info;
+        playlist << raw;
     }
+
     return playlist;
 }
 
@@ -396,7 +406,7 @@ public:
     virtual bool load() override final;
     virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
     virtual void seek(qint64 time) override final;
-    virtual QList<TrackInfo*> createPlayList(TrackInfo::Parts parts) override final;
+    virtual TrackInfoList createPlayList(TrackInfo::Parts parts) override final;
 
 private:
     JT1Song *m_song = nullptr;
@@ -487,9 +497,9 @@ qint64 JaytraxReader::read(unsigned char *data, qint64 maxSize)
     return maxSize;
 }
 
-QList<TrackInfo*> JaytraxReader::createPlayList(TrackInfo::Parts parts)
+TrackInfoList JaytraxReader::createPlayList(TrackInfo::Parts parts)
 {
-    QList<TrackInfo*> playlist;
+    TrackInfoList playlist;
     if(!m_input)
     {
         return playlist;
@@ -500,7 +510,11 @@ QList<TrackInfo*> JaytraxReader::createPlayList(TrackInfo::Parts parts)
     {
         jaytrax_changeSubsong(m_input, i - 1);
 
-        TrackInfo *info = new TrackInfo();
+#if QMMP_VERSION_INT < 0x20400
+        TrackInfo *raw(new TrackInfo), *info = raw;
+#else
+        TrackInfo raw, *info = &raw;
+#endif
         if(parts & TrackInfo::MetaData)
         {
             info->setValue(Qmmp::TITLE, (*m_song->subsongs)->name);
@@ -518,8 +532,9 @@ QList<TrackInfo*> JaytraxReader::createPlayList(TrackInfo::Parts parts)
 
         info->setPath("xgm://" + cleanPath() + QString("#%1").arg(i));
         info->setDuration(jaytrax_getLength(m_input, i - 1, 1, sampleRate()) / sampleRate() * 1000);
-        playlist << info;
+        playlist << raw;
     }
+
     return playlist;
 }
 
@@ -533,7 +548,7 @@ public:
     virtual bool load() override final;
     virtual qint64 read(unsigned char *data, qint64 maxSize) override final;
     virtual void seek(qint64 time) override final;
-    virtual QList<TrackInfo*> createPlayList(TrackInfo::Parts parts) override final;
+    virtual TrackInfoList createPlayList(TrackInfo::Parts parts) override final;
 
 private:
     pac_module *m_input = nullptr;
@@ -580,15 +595,19 @@ qint64 PacReader::read(unsigned char *data, qint64 maxSize)
     return pac_read(m_input, data, maxSize / (channels() * depth() / 8));
 }
 
-QList<TrackInfo*> PacReader::createPlayList(TrackInfo::Parts parts)
+TrackInfoList PacReader::createPlayList(TrackInfo::Parts parts)
 {
-    QList<TrackInfo*> playlist;
+    TrackInfoList playlist;
     if(!m_input)
     {
         return playlist;
     }
 
-    TrackInfo *info = new TrackInfo();
+#if QMMP_VERSION_INT < 0x20400
+    TrackInfo *raw(new TrackInfo), *info = raw;
+#else
+    TrackInfo raw, *info = &raw;
+#endif
     if(parts & TrackInfo::MetaData)
     {
         info->setValue(Qmmp::TITLE, pac_title(m_input));
@@ -606,7 +625,7 @@ QList<TrackInfo*> PacReader::createPlayList(TrackInfo::Parts parts)
 
     info->setPath("xgm://" + cleanPath() + "#1");
     info->setDuration(m_length);
-    playlist << info;
+    playlist << raw;
     return playlist;
 }
 

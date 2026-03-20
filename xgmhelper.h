@@ -22,6 +22,12 @@
 #include <QFile>
 #include <qmmp/trackinfo.h>
 
+#if QMMP_VERSION_INT < 0x20400
+using TrackInfoList = QList<TrackInfo*>;
+#else
+using TrackInfoList = QList<TrackInfo>;
+#endif
+
 /*!
  * @author Greedysky <greedysky@163.com>
  */
@@ -34,7 +40,7 @@ public:
     virtual bool load() = 0;
     virtual qint64 read(unsigned char *data, qint64 maxSize) = 0;
     virtual void seek(qint64 time) = 0;
-    virtual QList<TrackInfo*> createPlayList(TrackInfo::Parts parts) = 0;
+    virtual TrackInfoList createPlayList(TrackInfo::Parts parts) = 0;
 
     inline int bitrate() const { return 8; }
     inline int sampleRate() const { return 44100; }
@@ -83,7 +89,7 @@ public:
 
     inline qint64 read(unsigned char *data, qint64 maxSize) { return m_input->read(data, maxSize); }
 
-    inline QList<TrackInfo*> createPlayList(TrackInfo::Parts parts) { return m_input->createPlayList(parts); }
+    inline TrackInfoList createPlayList(TrackInfo::Parts parts) { return m_input->createPlayList(parts); }
 
 private:
     AbstractReader *m_input = nullptr;
