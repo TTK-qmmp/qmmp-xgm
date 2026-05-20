@@ -1,13 +1,12 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.18.0)
 
 project(xgm)
 
 if(MSVC)
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /Ox /W3 /wd4996")
 else()
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O3 -Wall")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O3 -Wall -Wno-unused-result")
 endif()
-
 
 #if(NOT TARGET emu2149) 
 #    add_subdirectory(modules/emu2149) 
@@ -33,6 +32,9 @@ endif()
 #    add_subdirectory(modules/kmz80)
 #endif()
 
+add_definitions(-DNOSDL_MIXER)
+
+include_directories(klystrack)
 include_directories(kss/modules)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
@@ -55,3 +57,4 @@ install(FILES kss/kss/kss.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/lib${PRO
 install(FILES nezplug/nezplug.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/lib${PROJECT_NAME}/nezplug)
 install(FILES jaytrax/jxs.h jaytrax/jaytrax.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/lib${PROJECT_NAME}/jaytrax)
 install(FILES sbstudio/pac.h sbstudio/pacP.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/lib${PROJECT_NAME}/sbstudio)
+install(FILES klystrack/lib/ksnd.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/lib${PROJECT_NAME}/klystrack)
