@@ -54,4 +54,4 @@ install(FILES kss/kssplay.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/lib${PRO
 install(FILES kss/kss/kss.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/lib${PROJECT_NAME}/kss/kss)
 install(FILES nezplug/nezplug.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/lib${PROJECT_NAME}/nezplug)
 install(FILES jaytrax/jxs.h jaytrax/jaytrax.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/lib${PROJECT_NAME}/jaytrax)
-install(FILES pac/pac.h pac/pacP.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/lib${PROJECT_NAME}/pac)
+install(FILES sbstudio/pac.h sbstudio/pacP.h DESTINATION ${CMAKE_INSTALL_PREFIX}/include/lib${PROJECT_NAME}/sbstudio)

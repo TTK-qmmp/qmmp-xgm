@@ -84,14 +84,14 @@ SOURCES += decoderxgmfactory.cpp \
            libxgm/nezplug/logtable/log_table_12_7_30.c \
            libxgm/nezplug/logtable/log_table_12_8_30.c \
            libxgm/nezplug/opltable/opl_table.c \
-           libxgm/pac/effect.c \
-           libxgm/pac/error.c \
-           libxgm/pac/gus.c \
-           libxgm/pac/init.c \
-           libxgm/pac/load.c \
-           libxgm/pac/mix.c \
-           libxgm/pac/read.c \
-           libxgm/pac/seek.c
+           libxgm/sbstudio/effect.c \
+           libxgm/sbstudio/error.c \
+           libxgm/sbstudio/gus.c \
+           libxgm/sbstudio/init.c \
+           libxgm/sbstudio/load.c \
+           libxgm/sbstudio/mix.c \
+           libxgm/sbstudio/read.c \
+           libxgm/sbstudio/seek.c
 
 FORMS += settingsdialog.ui
 
