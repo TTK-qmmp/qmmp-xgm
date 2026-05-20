@@ -91,12 +91,29 @@ SOURCES += decoderxgmfactory.cpp \
            libxgm/sbstudio/load.c \
            libxgm/sbstudio/mix.c \
            libxgm/sbstudio/read.c \
-           libxgm/sbstudio/seek.c
+           libxgm/sbstudio/seek.c \
+           libxgm/klystrack/lib/ksnd.c \
+           libxgm/klystrack/snd/cyd.c \
+           libxgm/klystrack/snd/cydchr.c \
+           libxgm/klystrack/snd/cydcrush.c \
+           libxgm/klystrack/snd/cydentry.c \
+           libxgm/klystrack/snd/cydflt.c \
+           libxgm/klystrack/snd/cydfm.c \
+           libxgm/klystrack/snd/cydfx.c \
+           libxgm/klystrack/snd/cydosc.c \
+           libxgm/klystrack/snd/cydrvb.c \
+           libxgm/klystrack/snd/cydwave.c \
+           libxgm/klystrack/snd/freqs.c \
+           libxgm/klystrack/snd/music.c \
+           libxgm/klystrack/snd/pack.c
 
 FORMS += settingsdialog.ui
 
 INCLUDEPATH += $$PWD/libxgm \
+               $$PWD/libxgm/klystrack \
                $$PWD/libxgm/kss/modules
+
+DEFINES += NOSDL_MIXER
 
 #CONFIG += BUILD_PLUGIN_INSIDE
 contains(CONFIG, BUILD_PLUGIN_INSIDE){
