@@ -341,7 +341,7 @@ typedef struct RWops
 		struct
 		{
 			Uint32 ptr, length;
-			char *base;
+			void *base;
 		} mem;
 	};
 	int close_fp;

@@ -96,14 +96,7 @@ static int mus_trigger_instrument_internal(MusEngine* mus, int chan, MusInstrume
 
 static int RWread(struct RWops *context, void *ptr, int size, int maxnum)
 {
-	// rePlayer begin
-	const int len = my_min(size * maxnum, context->mem.length - context->mem.ptr);
-	memcpy(ptr, context->mem.base + context->mem.ptr, len);
-
-	context->mem.ptr += len;
-
-	return len;
-	// rePlayer end
+	return fread(ptr, size, maxnum, context->fp);
 }
 
 
@@ -1431,7 +1424,6 @@ Uint32 mus_ext_sync(MusEngine *mus)
 int mus_advance_tick(void* udata)
 {
 	MusEngine *mus = udata;
-	int ret = 1; // rePlayer
 
 	if (!(mus->flags & MUS_EXT_SYNC))
 		mus->ext_sync_ticks = 1;
@@ -1605,7 +1597,6 @@ int mus_advance_tick(void* udata)
 					if (mus->song->flags & MUS_NO_REPEAT)
 						return 0;
 
-					ret = 0; // rePlayer
 					mus->song_position = mus->song->loop_point;
 					for (int i = 0 ; i < mus->cyd->n_channels ; ++i)
 					{
@@ -1650,7 +1641,7 @@ int mus_advance_tick(void* udata)
 #endif
 	}
 
-	return ret; // rePlayer
+	return 1;
 }
 
 

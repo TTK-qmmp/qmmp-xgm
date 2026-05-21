@@ -69,7 +69,7 @@ void cydfm_cycle(const CydEngine *cyd, CydFm *fm)
 
 void cydfm_set_frequency(const CydEngine *cyd, CydFm *fm, Uint32 base_frequency)
 {
-	enum { MUL = 2 }; // rePlayer
+	const int MUL = 2;
 	static Sint32 harmonic[16] = { 0.5 * MUL, 1.0 * MUL, 2.0 * MUL, 3 * MUL, 4 * MUL, 5 * MUL, 6 * MUL, 7 * MUL, 8 * MUL, 9 * MUL, 10 * MUL, 10 * MUL, 12 * MUL, 12 * MUL, 15 * MUL, 15 * MUL };
 
 	fm->period = ((Uint64)(ACC_LENGTH)/16 * (Uint64)base_frequency / (Uint64)cyd->sample_rate) * (Uint64)harmonic[fm->harmonic & 15] / (Uint64)harmonic[fm->harmonic >> 4];
