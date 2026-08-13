@@ -1,4 +1,4 @@
-This is a plugin for Qmmp (1.6.0 or greater) which supports MSX related file.
+This is an inut plugin for Qmmp (1.6.0 or later) that supports MSX related files.
 
 Based on [libkss](https://github.com/digital-sound-antiques/libkss) (A player library for MSX music formats),
 [nezplug++](https://github.com/jprjr/libnezplug) (HES/KSS/NSF/GBR/GBS/AY player library),
